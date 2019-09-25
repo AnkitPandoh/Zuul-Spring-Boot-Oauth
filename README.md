@@ -1,0 +1,1 @@
+zuul-spring-boot-oauth

@@ -1,0 +1,20 @@
+server:
+ port: 8081
+ 
+zuul:
+ sensitiveHeaders: Cookie,Set-Cookie
+ routes:
+  resource-service:
+   path: /**/api/**
+   url: http://localhost:9092
+  oauth-service:
+   path: /oauth/**
+   url: http://localhost:8083
+   stripPrefix: false
+
+jwt:
+ public-key:
+  path: ./public-key
+
+  
+   

@@ -1,0 +1,35 @@
+spring:
+ profiles:
+  active: dev
+
+---
+
+spring:
+ profiles: dev
+ active: true
+
+jdbc:
+ driverClassName: com.mysql.cj.jdbc.Driver
+ url: jdbc:mysql://localhost:3306/auth?serverTimezone=UTC
+ user: root
+ pass: root
+
+jwt:
+ private-key:
+  path: ./private-key
+ 
+
+server:
+ port: 8083
+ 
+---
+
+spring:
+ profiles: test
+jdbc:
+ driverClassName: org.h2.Driver
+ url: jdbc:h2:~/data/auth;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=TRUE
+ user: sa
+ pass: 
+server:
+ port: 8081
