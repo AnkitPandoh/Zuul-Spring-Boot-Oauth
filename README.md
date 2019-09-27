@@ -91,7 +91,7 @@ Run sample-microservice: http://localhost:8082/
 
 ```
 curl -X POST \
-  http://localhost:8081/oauth/token \
+  http://localhost:8080/oauth/token \
   -H 'Accept: */*' \
   -H 'Accept-Encoding: gzip, deflate' \
   -H 'Authorization: Basic dGVzdGNsaWVudDp0ZXN0c2VjcmV0' \
@@ -124,7 +124,7 @@ curl -X POST \
 
 ```
 curl -X GET \
-  http://localhost:8082/sample/api/v1 \
+  http://localhost:8080/sample/api/v1 \
   -H 'Accept: */*' \
   -H 'Accept-Encoding: gzip, deflate' \
   -H 'Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Njk0ODEyOTMsInVzZXJfbmFtZSI6InRlc3RfdXNlciIsImF1dGhvcml0aWVzIjpbIlJFQUQiLCJBRE1JTiJdLCJqdGkiOiI5YTYzYmUyNi1jY2YyLTQ4NGEtOThiMy0xNzdkOGMwYmQ4MjIiLCJjbGllbnRfaWQiOiJ0ZXN0Y2xpZW50Iiwic2NvcGUiOlsiYWxsIl19.g2FS89XWCMX3W-zVP7venL3zdlsdW7UpIUyqOlwEHm28ZDp42HkN9suH1YynL8YKWcNQb2N3MbQIHH8hYBv2XHTcZP9YHfJHeGMPx0v1_6VlxEm6MXK4Eym89wTHlZEZ3Ff5mYNJYdmeHpkK-8cYJnhQzXgNom0qKQV5huNghLoX7bczQfh74mYJIBLJ71H0jhV4-dJWCE1RdRKwYkTHul55Q28DF8XcP5RqeydTKAK3XUh64gSDDKIWjFcfIrIU21gFA9AiJpBaYFDzodbsI4vSyDR8rWgPG46d5Rv-c58BalZSfYaPancIFzxXOkuj4iuOG4FRp96FYfTA8jbesQ' \
