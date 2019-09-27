@@ -15,6 +15,6 @@ public class SampleApi {
 	
 	@GetMapping("/api/v1")
 	public String sayHello() {
-		return "Hello"
+		return "Hello";
 	}
 }
