@@ -1,34 +1,59 @@
 # OAuth Server
 
 Brief about components:
-* authorization-server
 
-Responsible for Issuing the Jwt token which can be used to access the sample microservice. Uses Spring Boot @EnableAuthorizationServer annotation which enables
-the /oauth/authorize and /oauth/token endpoints. For more details, have a look at https://projects.spring.io/spring-security-oauth/docs/oauth2.html. For this sample, we are using ```password``` Grant Type. But this code, can be extended for other grant types as well. We are using Private/Public keys to sign and verify the token at authorizaton-server and edge-server respectively. Commands mentioned below to generate the private and public key using java keytool.
+* **authorization-server**
 
-* edge-server
+<p>Responsible for Issuing the Jwt token which can be used to access the sample microservice. Uses Spring Boot @EnableAuthorizationServer annotation which enables the
 
-Responsible for proxying any request to Authorization Server and sample microservice. Since we have used @EnableResourceServer annotation which adds ```OAuth2AuthenticationProcessingFilter``` to the security filter chain which is responsible to load the OAuth2Authentication Object to Spring Context, it checks wheather request has valid JWT. If not, it would return the Unauthorized 401 response back to client. For proxying the request, we have used Spring boot Zuul. Currently we have registered our end points with Zuul but we can also use Ribbon and Eureka to register our services with Zuul proxy server.
+/oauth/authorize and /oauth/token endpoints. For more details, have a look at https://projects.spring.io/spring-security-oauth/docs/oauth2.html. For this sample, we are 
 
-* sample-microservice
+using ```password``` Grant Type. But this code, can be extended for other grant types as well. We are using Private/Public keys to sign and verify the token at authorizaton-
 
-Sample Rest API which we want to protect. We can add more granular security checks at microservice level such as authorizing the user based on roles to access the API. This would require to validate the token again at microservice and extract the roles out of JWT and authorize users to access the resources. But for the sake of simplicity, we are just checking the JWT at edge-server only.
+server and edge-server respectively. Commands mentioned below to generate the private and public key using java keytool.</p>
+
+
+* **edge-server**
+
+<p>Acting as a Resource Server and responsible for proxying any request to Authorization Server and sample microservice. Since we have used @EnableResourceServer annotation which
+
+adds ``` OAuth2AuthenticationProcessingFilter``` to the security filter chain which is responsible to load the OAuth2Authentication Object to
+
+Spring Context, it checks wheather request has valid JWT. If not, it would return the Unauthorized 401 response back to client. For 
+ 
+proxying the request, we have used Spring boot Zuul. Currently we have registered our end points with Zuul but we can also use Ribbon and
+ 
+Eureka to register our services with Zuul proxy server.</p>
+
+
+* **sample-microservice**
+
+<p>Sample Rest API which we want to protect. We can add more granular security checks at microservice level such as authorizing the user based on roles to access the API.
+
+This would require to validate the token again at microservice and extract the roles out of JWT and authorize users to access the resources. But for the sake of simplicity, 
+
+we are just checking the JWT at edge-server only.</p>
+
 
 ### Generate Self signed certificate
 
 keytool -genkey -alias <alias> -keyalg RSA -keystore <jks name> -keysize 2048
 
+
 ### Generate Public Key
 
 keytool -export -keystore <jks name> -alias <key store alias> -file <output file name>
+
 
 ### Get Public Key
 
 http://localhost:8081/oauth/token_key
 
+
 ### Get Auth Token
 
 http://localhost:8081/oauth/token
+
 
 ### Setup Database
 
@@ -80,7 +105,7 @@ Run authorization-server: http://localhost:8081/
 
 Run sample-microservice: http://localhost:8082/
 
-Get token:
+**Get token:**
 
 ```
 curl -X POST \
@@ -100,7 +125,7 @@ curl -X POST \
   -d 'grant_type=password&username=test_user&password=password&scope=all'
 ```
 
-Response:
+**Response:**
 
 ```
 {
@@ -113,7 +138,7 @@ Response:
 }
 ```
 
-Access sample-microservice
+**Access sample-microservice**
 
 ```
 curl -X GET \
